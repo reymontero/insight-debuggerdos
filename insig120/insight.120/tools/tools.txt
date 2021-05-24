@@ -1,0 +1,56 @@
+README for tools
+----------------
+
+mkhelp, Copyright (c) 2007 Oleg O. Chukaev
+chksize, Copyright (c) 2007 Oleg O. Chukaev
+uclpack, Copyright (c) 1996-2004 Markus Franz Xaver Johannes Oberhumer
+
+All these programs distributed under the terms of the GNU General
+Public License. See the file COPYING for details.
+
+
+mkhelp
+------
+
+This program creates binary image of video page from input file.
+Input file is a text file that contains 25 lines, 80 columns in
+each line. Output file contains pairs char/attribute. Attributes
+defined by special symbols that can be inserted in the lines of
+input file:
+`<' -- use COL_FRAME
+`(' -- use COL_BOLD
+`[' -- use COL_ITALIC
+`{' -- use COL_KEY
+`>', `)', `]', `}' -- use COL_TEXT again.
+mkhelp uses COL_TEXT for text, that not enclosed in pairs of
+these symbols. You can edit mkhelp.h to redefine colors.
+Output file must have size 4000 bytes for screen 80x25. Use
+chksize to check the size of output file.
+
+
+chksize
+-------
+
+This program compares the size of the specified file with command
+line argument (positive decimal number). If they identical,
+chksize returns 0, if they different -- 3, if the file is not
+found -- 2, if an error in command line -- 1.
+
+
+uclpack
+-------
+
+This program used to compress binary image of video memory. It was
+patched because decompressor do not understand header and other
+such things in compressed data. If you want to rebuild uclpack you
+need sources of UCL data compression library version 1.03, C
+compiler (I tested DJGPP 2.03 and Open Watcom C 1.5) and patch (I
+used GNU patch 2.5.4). Change directory to EXAMPLES, apply patch
+(uclpack.dif) with command `patch -i PATH\TO\uclpack.dif', CD
+to .., and rebuild UCL with command b\dos32\wc.bat (or dj2.bat,
+see b\00readme.txt for details).
+
+
+End of file
+-----------
+

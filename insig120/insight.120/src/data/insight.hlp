@@ -1,0 +1,25 @@
+<ีอออออออออออออออออออออออออออออ>( Insight 1.20 help )<ออออออออออออออออออออออออออออออธ>
+<ณ>[Code window:          Dump window:         Dump...         Function keys:     ]<ณ>
+<ณ>{@X} - exit             {^F} - follow menu     [\(in code and]    [\(code window\)]      <ณ>
+<ณ>{@}/{F10} - menu          {^B} - block menu      [dump windows\)]   {F1} - help          <ณ>
+<ณ>{@\[0-9\]} - code mark    {^D} - dump addr       {@C} - CS:IP      {F2} - set/clear BPT <ณ>
+<ณ>{@$\[0-9\]} - dump mark   {^L} - search again    {@D} - DS:SI      {F3} - load pgm      <ณ>
+<ณ>{\[0-9\]} - go to mark    {^S} - search          {@E} - ES:DI      {F4} - go to cursor  <ณ>
+<ณ>{$\[0-9\]} - clear mark   {Tab} - hex/ASCII      {@S} - SS:BP      {F5} - refresh screen<ณ>
+<ณ>{$A} - assembler        {\[0-9A-F\]} - edit      {@A} - DX:AX      {F7} - trace into    <ณ>
+<ณ>{$D} - dump window      {^\0}/{^\1} - -/+ 1 byte   {@B} - ES:BX      {F8} - step over     <ณ>
+<ณ>{$F} - flags window                          {@F} - DS:DX      {F10} - menu         <ณ>
+<ณ>{$R} - regs window      [Regs window:]         {@I} - ES:SI      {^F2} - pgm reset    <ณ>
+<ณ>{^F}/{Enter} - follow     {^D} - dec reg         {@J} - DS:DI      {^F9} - run          <ณ>
+<ณ>{^P}/{Backspace} - prev   {^I} - inc reg         {@U} - user scr   {@F2} - BPT activity <ณ>
+<ณ>{^O}/{^Enter} - CS:IP     {^Z} - zero reg        {@L} - code       {@F5} - user screen  <ณ>
+<ณ>{^D} - dump addr        {^O} - restore reg     {@=} - reference                     <ณ>
+<ณ>{^G} - disasm addr      {^A} - rest. all regs,ฟ                [Flags window:]      <ณ>
+<ณ>{^N} - new CS:IP             but CS:IP, FL  ณ                {Space} - toggle flag<ณ>
+<ณ>{^W} - data watch       {^C} - restore CS:IP  ด                {^T} - restore flags <ณ>
+<ณ>{^B} - block menu       {^T} - restore flags  ด                {0}/{1} - clear/set fl.<ณ>
+<ณ>{^S} - search           {^R} - 16/32-bit regs ด                                   <ณ>
+<ณ>{^L} - search again     also in code wnd. ฤฤู                         (@) - Alt   <ณ>
+<ณ>{^R} - 16/32-bit regs   {Tab}/{$Tab} - move                               (^) - Ctrl  <ณ>
+<ณ>{^\0}/{^\1} - -/+ 1 byte    {@F10} - local menu in all windows              ($) - Shift <ณ>
+<ิออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออพ>

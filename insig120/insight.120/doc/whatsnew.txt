@@ -1,0 +1,112 @@
+ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ
+
+                              Insight 1.20
+
+
+                            Version histrory.
+
+
+
+                      Recent changes - 04.02.2007
+
+
+ Copyright (c) Victor M. Gamayunov, Sergey Pimenov, 1993, 96, 97, 2002
+ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ
+
+
+ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ
+  Legend
+ฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤ
+
+  [!]  ๚  Major change
+  [+]  ๚  New possibility
+  [*]  ๚  Bugfix
+  [-]  ๚  Documented error
+
+    After description can be specified name of the person, who has
+           reported the bug or has offered the improvement.
+
+ฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤ
+
+
+ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ
+  Version 1.20
+ฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤ
+
+  [!]  ๚  Sources converted to NASM format.
+
+  [!]  ๚  Much internal changes and local optimizations (see the
+          file CHANGES and the sources).
+
+  [!]  ๚  Documentation translated to english.
+                                     [Translated by Dmitry Vodyannikov]
+
+  [+]  ๚  Help (F1).
+
+  [+]  ๚  Debugger shows the return code and type of  termination  of
+          the program.
+
+  [+]  ๚  Full saving/restoring the VGA registers and font.
+
+  [*]  ๚  Did not work Ctrl+C in registers window. Now it works.
+
+  [+]  ๚  Line of hexadecimal numbers above the ASCII-part of dump.
+
+  [+]  ๚  Alt+U dumps the saved screen of  the  program  (4000  bytes
+          from 0b800:0000).
+
+  [+]  ๚  Enter == Ctrl+F; Backspace == Ctrl+P.
+
+ฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤ
+
+
+ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ
+  Version 1.10
+ฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤ
+
+  [+]  ๚  Source code of debugger is released under GNU GPL.
+
+ฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤ
+
+
+ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ
+  Version 1.01
+ฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤ
+
+  [*]  ๚  Corrected  displaying  of  data  on  invalid  address   for
+          instruction that refers on that data.  As  effect corrected
+          invalid positioning of dump window when using Alt+=.
+                                         [Alex Trubin, 2:5030/620.12]
+
+  [*]  ๚  Corrected expansion of immediate operand to  doubleword  in
+          instructions like cmp eax,-1.
+
+  [*]  ๚  Corrected execution of Proc  Step  for  16-bit  conditional
+          jumps.
+
+  [*]  ๚  Corrected displaying of 32-bit memory cells for instruction
+          of 386+ CPU (earlier displayed as 16-bit).
+
+  [*]  ๚  For instructions of 386+ CPU, which work with 32-bit  data,
+          now size of operand displayed correctly  (dword ptr instead
+          of word ptr).
+
+  [*]  ๚  For instructions like movzx/movsx reg,mem now size of  mem-
+          operand is showed (byte ptr, for example).
+
+  [*]  ๚  The Follow function now understands 16-it conditional jumps.
+          Direction and truth of jump displayed correctly.
+
+  [*]  ๚  Now works Alt+L in the dump window.
+
+  [+]  ๚  Added highlighting of current byte in both  parts  of  dump
+          window during editing.
+                                       [Alexey Andreev,2:5030/353.99]
+
+  [-]  ๚  If it  is  disassembled  segment,  completely  filled  with
+          prefixes, then disassembler hangs.
+
+ฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤ
+
+
+

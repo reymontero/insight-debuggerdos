@@ -1,0 +1,31 @@
+Insight 1.20
+============
+
++ Fixed: ^C in Registers Window do not restore CS:IP.
++ Fixed: program's SP on startup was incorrect.
++ Show return code and termination type when program terminates.
++ Correct saving and restoring screen on VGA.
++ Added /e switch (EGA mode -- do not save font and VGA registers).
++ Line of hex digit above ASCII-part of Dump Window.
++ Alt-U: dump user screen. (Dump of buffer in Insight's data area.)
++ Help (F1 in code window).
++ Enter == ^F, Backspace == ^P in code window.
++ Sources converted to NASM format.
++ Names of almost all constants uppercased. (Except for kb*, at*.)
++ menus.inc: all *menu.inc files in one file.
++ no_cursor, small_cursor, large_cursor added.
++ colors.inc now contains definitions of colors of all elements.
++ Crypt-related stuff removed.
++ Palette-related stuff removed.
++ Size of window buffer increased to 2800 bytes.
++ Conditional compilation removed.
++ Makefile, uclpack.exe, mkhelp.exe, chksize.exe added.
++ strlen optimized.
++ edit_registers/update_registers optimized.
++ fill_byte / fill_word / fill_dword optimized.
++ And others minor changes...
+
+
+End of file
+===========
+
