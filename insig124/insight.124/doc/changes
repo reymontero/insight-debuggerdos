@@ -1,0 +1,134 @@
+Insight 1.24 (2009-01-11)
+=========================
+
+* Alt+F5 and Alt+U (Show and Dump User Screen correspondingly) now work in
+  the Dump window.
+* Fixed: Alt+L didn't work in the Dump window since version 1.20.
+* Fixed: Current line in the Code window highlighted incorrectly after
+  entering assembler mode via Edit|Assembler.
+* Up and Down arrow keys sets and clears a flag in the Flags window.
+* Added 2 color schemes (TD and NC).
+* Fixed: Modification of SP or BP registers in some cases leads to general
+  protection faults.
+
+
+Insight 1.23 (2008-10-24)
+=========================
+
+* Alt+Z in the Dump window expands/shrinks it.
+* Home/End now work in the Dump window.
+* F6: skip current instruction.
+* Fixed: ^A in the Code window do not update the Stack window (try to change
+  SP and then restore it in previous versions).
+* Stack window combined with Local variables / Function arguments window.
+  Content of both windows can be edited (Shift+S in the Code window).
+* Fixed: CPU type displayed incorrectly on P-4. Thanks to Robert Riebisch.
+* Added 2nd page to the internal Help.
+* Current address of the Dump window and the Stack window displayed
+  if corresponding window is in edit mode.
+* Current line in the Code window is highlighted even if this window is
+  inactive.
+* Insight can be compiled with NASM 2.0+. Patch by Alex Buell.
+* Added support for some undocumented instructions. Suggested by Robert
+  Riebisch.
+* whatsnew.* are no longer maintained. All changes are described in `changes'
+  and `changes.rus'. Significant changes are marked with *, others -- with +.
++ bp.inc: added comments and optimizations.
++ Fixed: incorrect color of a shadow if atShadow != 7.
++ ...
+
+
+Insight 1.22 (2007-11-24)
+=========================
+
+* Fixed: Insight hangs on 8086 and 286 machines after pressing Ctrl+R
+  in the Code or Registers window.
+* Fixed: incorrect initial addresses of Code and Dump windows after
+  loading program using F3.
+* Fixed: cursor in the code window disappears after executing INT 20 or
+  INT 21 / 4C instruction using Run|Step over.
+* Added support for screen modes 90x25, 90x30, etc. This support requires
+  changes in the Makefile and recompilation.
+* Fixed: there was no DOS function number in AH in restore_dta procedure.
+* Zero-bytes are highlighted in the Dump window.
+* English documentation (insight.txt) corrected. Thanks to Goxygen.
+* Changed e-mail address of Sergey Pimenov.
++ Optimizations in windows.inc, dialogs.inc, iface.inc.
++ chksize removed.
+
+
+Insight 1.21 (2007-03-11)
+=========================
+
+* Added List Memory Blocks command (^M in the code window).
+* Added Animate command (Run|Animate).
+* Large dump window if the screen have more than 25 lines and /e switch
+  is used.
+* Command line, specified via Run|Arguments, now may be up to 126 bytes
+  long. (Was: up to 80 bytes.)
++ Added comments to some procedures.
++ src\makefile fixed: `..\tools\nasm' changed to `nasm'.
++ Updated description of mkhelp in tools\tools.txt.
+
+
+Insight 1.20 (2007-02-05)
+=========================
+
+* Fixed: ^C in Registers Window do not restore CS:IP.
+* Fixed: program's SP on startup was incorrect.
+* Show return code and termination type when program terminates.
+* Correct saving and restoring screen on VGA.
+* Added /e switch (EGA mode -- do not save font and VGA registers).
+* Line of hex digit above ASCII-part of Dump Window.
+* Alt-U: dump user screen. (Dump of buffer in Insight's data area.)
+* Help (F1 in code window).
+* Enter == ^F, Backspace == ^P in code window.
+* Sources converted to NASM format.
++ Names of almost all constants uppercased. (Except for kb*, at*.)
++ menus.inc: all *menu.inc files in one file.
++ no_cursor, small_cursor, large_cursor added.
++ colors.inc now contains definitions of colors of all elements.
++ Crypt-related stuff removed.
++ Palette-related stuff removed.
++ Size of window buffer increased to 2800 bytes.
++ Conditional compilation removed.
++ Makefile, uclpack.exe, mkhelp.exe, chksize.exe added.
++ strlen optimized.
++ edit_registers/update_registers optimized.
++ fill_byte / fill_word / fill_dword optimized.
++ And other minor changes...
+
+
+Insight 1.10 (2002-01-26)
+=========================
+
+* Source code of the debugger is released under GNU GPL.
+
+
+Insight 1.01 (1997-05-07)
+=========================
+
+* Corrected displaying of data on invalid address for instruction that
+  refers on that data. As effect corrected invalid positioning of dump
+  window when using Alt+=. [Alex Trubin, 2:5030/620.12]
+* Corrected expansion of immediate operand to doubleword in instructions
+  like cmp eax,-1.
+* Corrected execution of Proc Step for 16-bit conditionaljumps.
+* Corrected displaying of 32-bit memory cells for instruction of 386+ CPU
+  (earlier displayed as 16-bit).
+* Size of operand displayed correctly (dword ptr instead of word ptr) for
+  instructions of 386+ CPU which work with 32-bit data.
+* Size of mem-operand is showed (byte ptr, for example) for instructions
+  like movzx/movsx reg,mem.
+* The Follow function now understands 16-it conditional jumps. Direction
+  and truth of jump displayed correctly.
+* Alt+L in the Dump window works now.
+* Current byte is highlighted in both parts of the Dump window during
+  editing. [Alexey Andreev, 2:5030/353.99]
+* Bug: disassembler hangs if disassembled segment completely filled with
+  prefixes.
+
+
+End of file
+===========
+

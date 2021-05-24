@@ -1,0 +1,14 @@
+README for Insight 1.24
+-----------------------
+
+
+Description of the directories.
+
+DOC -- documentation in english and in russian.
+SRC -- source code. Use `make' command to build Insight.
+TOOLS -- tools needed for building help data for Insight.
+
+
+Send any comments, suggestions and bug reports to Oleg O. Chukaev
+<oleg.chukaev@mail.ru>.
+

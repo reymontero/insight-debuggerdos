@@ -1,0 +1,1769 @@
+ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+
+                              Insight 1.24
+
+
+                            Short description.
+
+
+                       Recent changes - 2009-01-11
+
+
+   Copyright (c) Victor Gamayunov, Sergey Pimenov, 1993, 96, 97, 2002
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    This document is not  tutorial  about  debuggers  in  general.  It
+  contains information about Insight and its usage.  This  document is
+  not intended for beginners. 
+
+    To see  improvements  over  prior  versions  of  Insight,  consult
+  [whatsnew.txt].
+
+    Changes since last revision are marked with `|' in the 1st column.
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+
+
+
+ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+
+  1. CONTENTS
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+  1.       Contents
+
+  2.       Copyright and license
+
+  3.       Running debugger
+  3.1.     System requirements
+  3.2.     Command line parameters
+
+  4.       Short description of debugger's interface
+  4.1.     Main windows of debugger
+  4.2.     Menu system
+  4.3.     Keyboard usage
+  4.4.     Dialog windows
+  4.5.     Numerical constants and addresses
+
+  5.       Description of debugger's windows
+  5.1.     Code/assembler window
+  5.1.1.   Code window
+  5.1.2.   Disassembler
+  5.1.3.   Assembler
+  5.2.     Dump window
+  5.3.     Registers window
+  5.4.     Flags window
+  5.5.     Stack window
+
+  6.       Configuration
+  6.1.     Disassembler mode
+  6.2.     Screen mode
+
+  7.       Debugging
+  7.1.     Loading a program
+  7.2.     Running a program
+  7.3.     Breakpoints
+
+  8.       Code and data navigation
+  8.1.     Go to address
+  8.2.     Data watch
+  8.3.     Code marks and Data marks
+  8.4.     Displaying memory blocks
+
+  9.       Working with data
+  9.1.     Search/Fill string
+  9.2.     Data searching
+  9.3.     Copying memory block
+  9.4.     Filling memory block
+  9.5.     Writing memory block to a file
+  9.6.     Reading memory block from a file
+
+  10.      Appendix 1: menu system
+  10.1.    Main menu
+  10.2.    Code window menu
+  10.3.    Dump window menu
+  10.4.    Registers window menu
+  10.5.    Flags window menu
+
+  11.      Appendix 2: keyboard shortcuts
+  11.1.    Code window
+  11.2.    Dump window
+  11.3.    Registers window
+  11.4.    Flags window
+
+  12.      Comments, suggestions, bug reports
+
+
+
+ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+
+  2. COPYRIGHT AND LICENSE
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+  Insight, real-mode debugger for MS-DOS / PC-DOS / FreeDOS.
+
+  Copyright (c) Victor Gamayunov, Sergey Pimenov, 1993, 96, 97, 2002.
+
+| Improvements by Oleg O. Chukaev, 2006 - 2009.
+
+    This program is free software;  you  can  redistribute  it  and/or
+  modify it under the terms of  the  GNU  General  Public  License  as
+  published by the Free Software Foundation; either version 2  of  the
+  License, or (at your option) any later version.
+
+    This program is distributed in the hope that it  will  be  useful,
+  but WITHOUT ANY WARRANTY;  without  even  the  implied  warranty  of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE.  See  the  GNU
+  General Public License for more details.
+
+    You should have received a copy of the GNU General Public  License
+  along with  this  program;  if  not,  write  to  the  Free  Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+  USA
+
+
+
+ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+
+  3. RUNNING DEBUGGER
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  3.1. System requirements
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  - i8086 compatible processor
+  - MS-DOS 3.3 compatible system
+  - EGA/VGA/SVGA/(*CGA) video card
+  - 30KB free disc space 
+  - 45KB RAM
+
+  * some visual artifacts may appear
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  3.2. Command line parameters
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    Command line syntax:
+
+       insight [options] [progname [progparams]]
+
+       options     - debugger's options;
+
+       progname    - name of program to debug;
+
+       progparams  - command line parameters for program to debug.
+
+
+    Possible options of the debugger:
+
+        Option    ³                  Purpose
+     ÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+           /?     ³  show short help
+           /h     ³  same as /?
+           /r     ³  terminate and stay resident in memory
+           /u     ³  unload resident debugger
+           /e     ³  assume EGA adapter installed
+
+                               Table 3.1
+
+    If you don't include /r, it is possible to leave debugger to  stay
+  in memory residently [using menu item File|Resident].
+
+
+
+ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+
+  4. SHORT DESCRIPTION OF DEBUGGER'S INTERFACE
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  4.1. Main windows of debugger
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    Debugger's screen is divided into 5 windows:  
+	1 - Code/Assembler
+	2 - Dump
+	3 - Registers
+	4 - Flags
+	5 - Stack
+
+    Content of any window may be modified.  The main window  is  Code/
+  Assembler. Main menu is accessible only from Code/Assembler window.
+
+                Window   ³      Menu        ³    Keys
+            ÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+              Assembler  ³  Edit|Assembler  ³   Shift+A
+              Dump       ³  Edit|Dump       ³   Shift+D
+              Registers  ³  Edit|Registers  ³   Shift+R
+              Flags      ³  Edit|Flags      ³   Shift+F
+              Stack      ³  Edit|Stack      ³   Shift+S
+
+                               Table 4.1
+
+    To return to the Code/Assembler window, use Esc or Enter.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  4.2. Menu system
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    The debugger's menu system includes "main menu" and  "local menus"
+  for some windows. The main menu (Fig. 4.1)  is  hidden  in  inactive
+  state and can be activated with Alt or F10 keystroke.
+
+    The local menu activates  by  pressing  Alt+F10  in  corresponding
+  window.
+
+    The detailed description of the purpose of the main and local menu
+  items located in corresponding sections, and a short description  of
+  all menus - in chapter 10.
+
+     File   Edit   Run   Breakpoints   Options   Window
+     ^      ^      ^     ^             ^         ^
+     ³      ³      ³     ³             ³         ÀÄ commands for work
+     ³      ³      ³     ³             ³            w/ the main window
+     ³      ³      ³     ³             ÀÄ options submenu
+     ³      ³      ³     ÀÄ commands for working with breakpoints
+     ³      ³      ÀÄ commands for running and tracing the program
+     ³      ÀÄ commands for switching to different windows
+     ÀÄ commands for exiting, loading new program, etc.
+
+
+   ÚÄÄÄÄÄÄ¿
+   ³ File ³
+   ÃÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄ¿
+   ³ Load...     F3 ³ÛÛ ÄÄÄÄ load new program into debugger
+   ³ New            ³ÛÛ ÄÄÄÄ terminate debugging
+   ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´ÛÛ
+   ³ About...       ³ÛÛ ÄÄÄÄ show information about debugger
+   ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´ÛÛ
+   ³ Resident       ³ÛÛ ÄÄÄÄ exit from debugger leaving it in memory
+   ³ Exit     Alt+X ³ÛÛ ÄÄÄÄ exit from debugger
+   ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙÛÛ
+     ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ
+
+   ÚÄÄÄÄÄÄ¿
+   ³ Edit ³
+   ÃÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+   ³ Assembler  Shift+A ³ÛÛ ÄÄÄÄ switch to assembler mode
+   ³ Dump       Shift+D ³ÛÛ ÄÄÄÄ go to dump window
+   ³ Registers  Shift+R ³ÛÛ ÄÄÄÄ go to registers window
+   ³ Flags      Shift+F ³ÛÛ ÄÄÄÄ go to flags window
+   ³ Stack      Shift+S ³ÛÛ ÄÄÄÄ go to stack window
+   ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙÛÛ
+     ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ
+
+   ÚÄÄÄÄÄ¿
+   ³ Run ³
+   ÃÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+   ³ Run            Ctrl+F9 ³ÛÛ ÄÄÄÄ run program
+   ³ Go to cursor        F4 ³ÛÛ ÄÄÄÄ run program to cursor
+   ³ Skip                F6 ³ÛÛ ÄÄÄÄ skip current instruction
+   ³ Trace into          F7 ³ÛÛ ÄÄÄÄ execute single instruction
+   ³ Step over           F8 ³ÛÛ ÄÄÄÄ execute single instr., skip over calls
+   ³ Animate...             ³ÛÛ ÄÄÄÄ automatically execute a program
+   ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´ÛÛ
+   ³ Arguments...           ³ÛÛ ÄÄÄÄ set command line arguments
+   ³ Program reset  Ctrl+F2 ³ÛÛ ÄÄÄÄ reload program
+   ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙÛÛ
+     ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ
+
+   ÚÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+   ³ Breakpoints ³
+   ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄ¿
+   ³ Set/Clear      F2 ³ÛÛ ÄÄÄÄ set / clear breakpoint
+   ³ Activity   Alt+F2 ³ÛÛ ÄÄÄÄ enable / disable breakpoint
+   ³ Edit...           ³ÛÛ ÄÄÄÄ [not yet implemented]
+   ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´ÛÛ
+   ³ Enable  all       ³ÛÛ ÄÄÄÄ enable all breakpoints
+   ³ Disable all       ³ÛÛ ÄÄÄÄ disable all breakpoints
+   ³ Delete  all       ³ÛÛ ÄÄÄÄ delete all breakpoints
+   ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙÛÛ
+     ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ
+
+   ÚÄÄÄÄÄÄÄÄÄ¿
+   ³ Options ³
+   ÃÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+   ³ CPU for disassembler   ³ÛÛ ÄÄÄÄ set disassembler mode
+   ³ Screen swapping        ³ÛÛ ÄÄÄÄ set screen mode
+   ³ Configuration...        ³ÛÛ ÄÄÄÄ [not yet implemented]
+   ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙÛÛ
+     ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ
+
+   ÚÄÄÄÄÄÄÄÄ¿
+   ³ Window ³
+   ÃÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+   ³ Refresh display     F5 ³ÛÛ ÄÄÄÄ redraw debugger's screen
+   ³ User screen     Alt+F5 ³ÛÛ ÄÄÄÄ show program's screen
+   ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙÛÛ
+     ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ
+
+                                Fig. 4.1
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  4.3. Keyboard usage
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    List of all keyboard shortcuts you can find in the Chapter 11.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  4.4. Dialog windows
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    Insight have dialog windows similar to ones in other programs.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  4.5. Numerical constants and addresses
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    Debugger only works with positive hexadecimal numbers. Decimal and
+  binary number systems are not yet supported.  Specifying  all digits
+  is not necesseary. Maximum value is of any number is 0xFFFF (65535).
+
+    Examples:
+  valid: 0, 10,  1245,  C0DE,  00FF
+  invalid: 0xFFFF, 12h, 111111
+
+    The   addresses   in   dialog   windows   are   written   in   the
+  "segment:offset" format.  Segment and offset  may be specified using
+  arithmetical operations "+" and "-".  It's allowed to use constants,
+  values of some 16-bit registers (ax, bx, cx, dx, si, di, bp, sp, ip,
+  fl) and values of segment registers (cs, ds, es, ss, fs, gs).  
+  
+    Examples:  
+  valid: cs:100, FFFF:0, ds:417, es:di+100, ds:si-1, es:di+bx-5, ax
+
+    To specify address in the Search/Fill/Block/Code window, you can
+  use only numeric constants.
+
+
+
+ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+
+  5. DESCRIPTION OF DEBUGGER'S WINDOWS
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  5.1. Code/assembler window
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  5.1.1. Code window
+
+    Code window enables you  to  edit  disassembled  instructions  (in
+  accordance with chosen processor) and set up breakpoints.
+
+        ÍÍÍÍÍ AuthenticAMD 486 ÍÍÍÍ Debugger N82538874.S04a ÍÍ¸
+        014A  F8             clc                              ³
+        014B  C3             ret                              ³
+        014C  83C303         add     bx,0003                  ³
+        014F  E2F2           loop    0143                    ³
+        0151  F9             stc                              ³
+        0152  C3             ret                              Ã
+        0153  E8A31C         call    1DF9                     ³
+        0156  3445           xor     al,45                    ³
+        01588B1E9078       mov     bx,[7890]               5Ã
+        015C  38876967       cmp     [bx+6769],al             ³
+        0160  7408           jz      016A                    ³
+        0162  33DB           xor     bx,bx                    ³
+        0164  38066967       cmp     [6769],al                ³
+        0168  75E7           jnz     0151                    ³
+        016A  43             inc     bx                       ³
+        016B  891E9078       mov     [7890],bx                ³
+        016F  80FB05         cmp     bl,05                    ³
+        ÄÄÄÄÄ 15CB:0158 ÄÄÄÄ DS:7890 = 2601 ÄÄÄÄÄÄÄÄÄ DS:SI ÄÄÁ
+
+                                Fig. 5.1
+
+    On top of the window you can see type of the  processor,  name  of
+  the debugger and version number.
+
+    The address of instruction under cursor appears in the  bottom  of
+  code window. For commands that refers to memory cell(s), it displays
+  content(s) of that(those) cell(s).  It also displays  the  state  of
+  data watch mode (8.2).  The numbers  in  rightmost  column  of  code
+  window represent remembered positions of code window (8.3).
+
+
+  5.1.2. Disassembler
+
+    The disassembler allows to view the instructions of the program in
+  one of four modes: 8086/8088, 80286, 80386 and 80486.  The mode  can
+  be assigned at menu Options|CPU for disassembler (6.1).
+
+    Syntax highlightning is used to improve visual apperiance.  Arrows
+  of different colors are  used  for  conditional  jump  instructions.
+  Brigther color  indicates  that  jump  is  expected  during  program
+  execution.
+
+    When target of the jump  instruction  is  the  same  or  the  next
+  instruction, dollar-sign is used  to  display  target  address. 
+  
+    Example: jmp $+2.
+
+    The default segment prefixes are omitted.
+
+    Use Ctrl+Left and Ctrl+Right to change  initial  address  of  code
+  window.
+
+
+  5.1.3. Assembler
+
+    The assembler allows to work only with  instruction  of  8086/8088
+  processors and with two data instructions - db and dw. For switching
+  to assembler mode is used item Edit|Assembler  in  main  menu,  item
+  Assembler in local menu of code window or combination  Shift+A,  for
+  exit - Enter or  Esc  keys.  If  exiting  with  the  Esc  key,  then
+  instruction, which changed last, is restored.
+
+    In assembler it is unnecessary to  enter  the  prefixes,  used  by
+  default. Possible use of $ symbol at the addresses of transition.
+
+    Note that assembler works with  8086/8088  instruction  only,  but
+  disassembler can disassemble even the 80486 instructions. So if  you
+  are found in the assembler  mode  and  press  Enter  on  80286-80486
+  instruction, then assembler will try to process it  even  though  it
+  was not edited, but was  produced  by  disassembler.  Message  about
+  error will be issued as a result.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  5.2. Dump window
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    The dump window (Fig. 5.2) is located under the  code  window  and
+  shows the data, residing on chosen address, in two  form  -  in  the
+  hexadecimal form (on the left) and in the  character  form  (on  the
+  right). Being in this window possible to edit memory content in  any
+  of these two forms. Moving from one type to the other is realized by
+  Tab key. The  Ctrl+Left  and  Ctrl+Right  combinations  changes  the
+  initial address of dump window on -1 and +1.
+
+    Current byte marked by color highlighting in both parts of window,
+  flickering cursor indicates that part, in which is realized editing.
+  Changed bytes can't be restored.
+
+ÄÄÄÄÄ 15CB:6DF8 ÄÄÄÄ DS:7872 = 5500 ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+            B  C  D  E  F  0  1  2  3  4  5  6  7  8  9  A
+15CB:713B  4D 65 6D 6F 72 79 20 61 6C 6C 6F 63 61 74 69 6F   Memory allocatio
+15CB:714B  6E 20 65 72 72 6F 72 24 43 61 6E 27 74 20 72 65   n error$Can't re
+15CB:715B  6C 65 61 73 65 20 64 65 62 75 67 67 65 72 20 6D   lease debugger m
+15CB:716B  65 6D 6F 72 79 24 44 65 62 75 67 67 65 72 20 6E   emory$Debugger n
+15CB:717B  6F 74 20 66 6F 75 6E 64 20 69 6E 20 6D 65 6D 6F   ot found in memo
+
+                                Fig. 5.2
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  5.3. Registers window
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    The registers window (Fig. 5.3) can work in two modes - 16-bit (a)
+  and 32-bit (b). The second mode  possible  only  on  computers  with
+  processor 80386 and above. Mode can be changed with item  "16/32-bit
+  regs" in local menu of code or registers window, or with  Ctrl+R  in
+  that windows. When working in 32-bit mode, registers window  have  a
+  greater size, while size of the stack window reduced.
+
+    ¸AX=0000  SI=0100  CS=15CB            ¸EAX=0000:0000     CS=15CB
+    ³BX=0000  DI=FFFC  DS=15CB            ³EBX=0000:0000     DS=15CB
+    ³CX=00FF  BP=091C  ES=15CB            ³ECX=0000:00FF     ES=15CB
+    ³DX=15CB  SP=FFFC  SS=15CB            ³EDX=0000:15CB     SS=15CB
+    ³                                     ³ESI=0000:0100     FS=0000
+    ³IP=0100        Flags=7202            ³EDI=0000:FFFC     GS=0000
+    ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ            ³
+                                          ³EBP=0000:091C     IP=0100
+                                          ³ESP=0000:FFFC  Flags=7202
+                                          ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                a.                                       b.
+                               Fig. 5.3
+
+    Being in  registers  window   possible  to  change  their  values,
+  entering value directly or  using  special  commands.  To  increment
+  contents of the register choose the item Increment in local menu  or
+  press Ctrl+I, to decrement - choose  the  item  Decrement  or  press
+  Ctrl+D. The Register is clears by command Zero or Ctrl+Z.
+
+    That registers, which value  is  changed,  displayed  with  bright
+  color.  Initial value of the register  can  be  restored  after  all
+  changes. For restoring the value of  one  of  the  registers  it  is
+  necessary to set the cursor on this register  and  choose  the  item
+  Restore in local menu of registers window or press Ctrl+O.  Thereby,
+  possible restore value of any register.  For restoring the values of
+  all registers is used item Restore all in local menu of registers or
+  code window, or keyboard combination Ctrl+A  in  the  same  windows.
+  Herewith restored values of all  registers,  except  for  CS:IP  and
+  flags register. For restoring CS:IP  possible  to  use  the  command
+  Restore or special command Restore CS:IP (the  combination  Ctrl+C).
+  For restoring the flags register there is  also  special  menu  item
+  Restore flags, which corresponds to the combination Ctrl+T.
+
+    After performing the step of the program or at interruption of the
+  execution on  breakpoint,  changed  registers  displayed  with  same
+  bright color. Values of registers can be restored.  After  switching
+  to registers or flags window such restoring will become impossible.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  5.4. Flags window
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    The flags window (Fig. 5.4) changes its location depending on mode
+  of registers window. When register window displays 32-bit registers,
+  this window located on several lines lower.
+
+    The flags window allows to change values  of  separate  flags.  If
+  flag is set then it displayed as 1, if  cleared  -  as  0.  You  can
+  directly assign value to flag or  switch  it  to  opposite  by  item
+  Toggle in local menu or by pressing spacebar. The item Restore flags
+  in local menu or Ctrl+T will restore all flags.
+
+                      ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                      ³ OF DF IF SF ZF AF PF CF
+                      ³  0  0  1  0  0  0  0  0
+                      ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                                Fig. 5.4
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  5.5. Stack window
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    The stack window (Fig. 5.5) shows only several values, which are
+  found on top of the stack. When register window displays 32-bit
+  registers, this window becomes less on 3 lines, than when displaying
+  16-bit registers. Right part of this window displays a memory dump
+  addressed by SS:BP+xxxx. Local variables and arguments of functions
+  which use C calling convention can be edited here.
+
+|                      ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                       ³SS:000A 088C  +000A CC73
+                       ³SS:0008 F01D  +0008 5A81
+                       ³SS:0006 FEF0  +0006 C291
+                       ³SS:0004 9A00  +0004 FFF0
+                       ³SS:0002 A000  +0002 418F
+                       ³SS:0000 20CD  +0000 89CA
+                       ³SS:FFFE 0000  -0002 0A71
+                       ³SS:FFFC0000  -0004 1234
+                       ÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+                                Fig. 5.5
+
+
+
+ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+
+  6. CONFIGURATION
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  6.1. Disassembler mode
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    The disassembler of the debugger can disassemble the  instructions
+  of the processor i486. In some cases, it is necessary to display the
+  instructions of determined processor only, for  example,  8086.  The
+  menu Options|CPU  for  disassembler  serves  for  changing  mode  of
+  disassembler.
+
+   ÚÄÄÄÄÄÄÄÄÄ¿
+   ³ Options ³
+   ÃÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+   ³ CPU for disassembler   ³ÛÛ
+   ³ Screen swappÚÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+   ³ Configuratio³ 8086/8088   ³ÛÛ ÄÄÄ 8086 mode
+   ÀÄÄÄÄÄÄÄÄÄÄÄÄÄ³ 80286       ³ÛÛ ÄÄÄ 80286 mode
+     ÛÛÛÛÛÛÛÛÛÛÛÛ³ 80386       ³ÛÛ ÄÄÄ 80386 mode
+                 ³ 80486       ³ÛÛ ÄÄÄ 80486 mode
+                 ÃÄÄÄÄÄÄÄÄÄÄÄÄÄ´ÛÛ
+                 ³ Auto detect ³ÛÛ ÄÄÄ automatically detect type
+                 ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÙÛÛ      of processor
+                   ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ
+
+                                Fig. 6.1
+
+    In this menu (Fig. 6.1) possible to choose the necessary  type  of
+  the processor, or point Options|CPU for disassembler|Auto detect. In
+  the last case, the mode of disassembler is depends on  type  of  the
+  processor of the computer, on which debugger executed. For processor
+  i486  and  above  used  80486  mode.  When  starting  the  debugger,
+  disassembler mode is defined automatically.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  6.2. Screen mode
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    The debugger works with screen directly, preventions of the "snow"
+  effect on CGA videocard is not  produced.  If  videocard  compatible
+  with VGA, then debugger works in mode 80x25.  The  debugged  program
+  can work in any videomode.  The VGA registers, screen of the program
+  and fonts are saved when switching on screen  of  the  debugger  and
+  restored at inverse switching. If videocard incompatible with VGA or
+  key "/e" was specified, then only screen  of  the  debugged  program
+  (4000 bytes) saved.  When working in text mode with  amount  of  the
+  lines greater than 25, dump window will increase  and  occupy  lower
+  part of the screen. When  work  with  applications,  which  use  the
+  graphics mode, is used mode switching without clearing  videomemory.
+  Usually herewith partly spoils the higher part of the screen of  the
+  program.
+
+    When debugging the program  possible  to  specify  the  way,  what
+  debugger must  work  with  screen  of  the  debugged  program.  This
+  possible do at menu Options|Screen swapping (Fig. 6.2).
+
+   ÚÄÄÄÄÄÄÄÄÄ¿
+   ³ Options ³
+   ÃÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+   ³ CPU for disassembler   ³ÛÛ
+   ³ Screen swapping        ³ÛÛ
+   ³ Configuration.ÚÄÄÄÄÄÄÄÄÄÄ¿Û
+   ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ³ None     ³ÛÛ ÄÄÄ do not switch screen
+     ÛÛÛÛÛÛÛÛÛÛÛÛÛÛ³ Smart    ³ÛÛ ÄÄÄ switch screen on certain
+                   ³ Always   ³ÛÛ Ä¿  instructions
+                   ÀÄÄÄÄÄÄÄÄÄÄÙÛÛ   ÀÄ switch screen on each step
+                     ÛÛÛÛÛÛÛÛÛÛÛÛ
+
+                                Fig. 6.2
+
+    In mode Always debugger is switched  on  screen  of  the  debugged
+  program on any start the program on execution (single step,  run  to
+  cursor, etc.). In mode None only  information  of  the  debugger  is
+  displayed on the screen, when starting the  program,  debugger  does
+  not switch to its screen. In mode Smart screens are switched only in
+  certain cases: when starting the program, when running to cursor and
+  when executing instruction, which  can  change  the  screen  of  the
+  program.
+
+    At any time possible to look the screen of the  debugged  program,
+  by choosing menu item Window|User screen or by  pressed  Alt+F5.  If
+  the program execution has brought about  damage  of  the  debugger's
+  screen,  then  screen   redraw   possible   by   using   menu   item
+  Window|Refresh display or by pressing F5.
+
+
+
+ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+
+  7. DEBUGGING
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  7.1. Loading a program
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    You can load the program in debugger by specifying its name  (with
+  extension!) and parameters in command line (3.2) or  by  using  item
+  File|Load in main menu (F3). In the last case  you  can  choose  the
+  file in dialog window Load a File. In this dialog possible to choose
+  the file from list of the files of the current directory, or specify
+  the path to the necessary file in the input line Name.
+
+    When loading the  program  at  dialog  window  Load  a  File,  the
+  parameters of the program must be specified apart, in dialog  window
+  Arguments, which is called by  command  Run|Arguments.  This  dialog
+  window is used if it is necessary to change the command line of  the
+  program.
+
+    If it is necessary to load in  debugger  the  program,  which  was
+  right before debugged or is debugged, again, then  choose  the  menu
+  item Run|Program reset or press Ctrl+F2.  Herewith  stops  debugging
+  the program, program is loaded again, breakpoints and  command  line
+  are saved. The other way to break the program execution  -  use  the
+  menu item File|New. In this case the debugging of the program stops,
+  the program is not loaded again, all  breakpoints  deleted,  command
+  line cleared.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  7.2. Running a program
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    To start the program you can choose the menu item Run|Run or press
+  Ctrl+F9. Program is executed until termination or  until  breakpoint
+  (int 3 instruction). For single step execution use the commands Run|
+  Trace into (F7) and Run|Step over (F8). If the second command  used,
+  then call, int, loop instructions and work  with  strings  does  not
+  traced as when use the first command.  If  some  procedure  contains
+  breakpoint, then stop on it will occur. The command Run|Go to cursor
+  (F4) allows to execute the area of the program  before  instruction,
+  on which cursor is found in code window.
+
+    The command Run|Animate allows to trace program  just  like  Trace
+  into command, but you do not need  to  press  F7  repeatedly.  After
+  entering delay (in 18ths  of  sec.)  and  pressing  Enter  execution
+  begins. To interrupt execution press any key.
+
+    If it is necessary  to  assign  new  value  to  CS:IP,  then  this
+  possible in two ways  -  assign values  to  registers  in  registers
+  window or move cursor to necessary instruction in  code  window  and
+  press Ctrl+N (the item New CS:IP in local menu) and this instruction
+  will become the new current instruction.
+
+    The menu item Run|Skip (F6) allows to skip current instruction.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  7.3. Breakpoints
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    The debugger allows to set up to 10 breakpoints. Set breakpoint by
+  pressing F2 (or  by  choosing  menu  item  Breakpoints|Set/Clear) on
+  chosen instruction. If given instruction already contain breakpoint,
+  then this breakpoint will be removed. Breakpoints are highlighted in
+  the code window.
+
+    It is possible to temporary disable the breakpoint (the breakpoint
+  does not deleted, but program will not stop on it). To do  this  set
+  code window cursor on  breakpoint  and  press  Alt+F2  (Breakpoints|
+  Activity). The next pressing  Alt+F2  will  enable  the  breakpoint.
+  Disabled breakpoints are highlighted with another color.
+
+    As a  matter  of  convenience  possible  to  use  the  menu  items
+  Breakpoints|Delete all for deleting  all  breakpoints,  Breakpoints|
+  Disable all - for disabling all breakpoints  and  Breakpoints|Enable
+  all - for enabling all breakpoints.
+
+
+
+ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+
+  8. CODE AND DATA NAVIGATION
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  8.1. Go to address
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    For code and data are used different commands of the transition to
+  necessary address, moreover one commands are issued from code window,
+  others - from dump window, but the third - from both code  and  dump
+  windows.
+
+    If it is necessary to display in code window  destination  address
+  of jump, call or int instruction, then it is necessary to choose the
+  item Code position|Follow in local menu of  code  window,  or  press
+  Ctrl+F or Enter.  You can directly specify the  initial  address  of
+  code  window  in  dialog   window   Goto   caused   by   item   Code
+  position|Address (Ctrl+G). To return to the current instruction  use
+  the item Code position|Origin (Ctrl+O or Ctrl+Enter).
+
+    All transition in code window are remembered in special  stack  so
+  it is possible to return to previous position using menu  item  Code
+  position|Previous (Ctrl+P or Backspace).  This stack uses the memory
+  area, which is also used for the other purposes. Because of this can
+  occur the situation, when part of stack data will be  corrupted.  In
+  this case debugger will show warning and will clean the stack.
+
+    Under active dump window you can to position the  code  window  on
+  the address, which contained in bytes under cursor. In this case two
+  bytes interpreted as new offset for disassembler (near  pointer)  or
+  as new segment for disassembler (far pointer with  offset  0).  Four
+  bytes interpreted as offset and segment  of  the  new  address  (far
+  pointer). To set new address of dump window you can select item Dump
+  follow from local menu of dump window, or press Ctrl+F.  In appeared
+  submenu the item Near code allows to set the  new  offset  for  code
+  window, Far code - a new offset and segment, Code segment  -  a  new
+  segment and offset 0.
+
+    You can specify initial address  of  the  dump  window  in  dialog
+  window Goto using menu item  Dump  position|Address  (Ctrl+D).  This
+  menu item exist in local menus of both code  and  dump  windows.  If
+  instruction, on which is located cursor of code  window,  refers  to
+  memory cell, then address of this cell can be used  as  initial  for
+  dump window - use the  item  Dump  position|Reference  (Alt+=).  The
+  additional items of local menus of code and dump windows  allows  to
+  use contents of some registers pairs as a  new  initial  address  of
+  dump window. See the Table 8.1.
+
+           Menu item   ³   Keys    ³         Purpose
+         ÍÍÍÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍØÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+           Dump DS:SI  ³   Alt+D   ³  set window to DS:SI
+           Dump ES:DI  ³   Alt+E   ³  set window to ES:DI
+           Dump SS:BP  ³   Alt+S   ³  set window to SS:BP
+           Dump CS:IP  ³   Alt+C   ³  set window to CS:IP
+           Dump ES:BX  ³   Alt+B   ³  set window to ES:BX
+           Dump ES:SI  ³   Alt+I   ³  set window to ES:SI
+           Dump DS:DX  ³   Alt+F   ³  set window to DS:DX
+           Dump DS:DI  ³   Alt+J   ³  set window to DS:DI
+           Dump DX:AX  ³   Alt+A   ³  set window to DX:AX
+           Dump code   ³   Alt+L   ³  set window to address
+                       ³           ³  of current instruction
+                       ³           ³  in code window
+           User screen ³   Alt+U   ³  set window to address
+                       ³           ³  of buffer with data
+                       ³           ³  from user screen
+
+                               Table 8.1
+
+    You can use address under dump window cursor as initial address of
+  dump window, similarly to positioning code window. Choose menu  item
+  Near data, Far data or Data segment from submenu Dump follow,  which
+  also invoked by Ctrl+F.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  8.2. Data watch
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    If it is necessary to  watch  the  memory,  on  which  points  the
+  changing registers pair, then possible  the  use  of  data  watching
+  function. When this function turned on the data window automatically
+  positioned in accordance with a chosen registers pair.  For example,
+  at examination of the work with string can be needed  to  view  that
+  byte, on which DS:SI points. Data watching allows automatically  set
+  dump window to necessary address after each step.
+
+    To turn this mode on it is necessary to set dump window using  one
+  of the combinations from Table 8.1, then press Ctrl+W or choose  the
+  item Data watch in local menu of code window. After  this  the  dump
+  window will be updated automatically. The repeated  pressing  Ctrl+W
+  switches this mode off.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  8.3. Code marks and Data marks
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    It is possible to save current position of code or dump window. Up
+  to 10 positions can be saved. Work with marks possible in  the  code
+  window only. To save position of code  window  you  need  to  go  to
+  required address and set cursor to required instruction.  Then press
+  Alt and numeral - a number of mark.  Number  of  the  mark  will  be
+  displayed in the rightmost column of code  window.  To  go  to  mark
+  press corresponding number. To move the mark to new place simply set
+  this mark in new place. To delete mark press Shift and corresponding
+  number.
+
+    To set mark in dump window press Shift+Alt+number. Marks  in  dump
+  window are not displayed. Moving to mark and removing the  mark  are
+  produced similarly.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  8.4. Displaying memory blocks
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    The debugger allows to display memory blocks allocated by DOS.  To
+  view these blocks press Ctrl+M in the code window.  For  each  block
+  the following information is displayed:
+
+    Seg   - segment address of the block.
+    Owner - segment address of the owner of the block.
+    Size  - size of the block (in paragraphs).
+    Type  - type of the block:
+      dos  - the block belongs to DOS;
+      free - the block is free;
+      prg  - the block belongs to a program, owned by itself;
+      env  - the block belongs to a program, contains environment
+             variables;
+      data - the block belongs to a program, owned by another block;
+    Name  - name of the block:
+      SC       - system code;
+      SD       - system data;
+      <noname> - block is free;
+      otherwise name of program - owner of that block. 
+
+    Selected block can be disassembled (Goto button) or  displayed  in
+  the dump window (Dump button).
+
+
+
+ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+
+  9. WORKING WITH DATA
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  9.1. Search/Fill string
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    In the Search (9.2) and Fill (9.4)  dialog  windows  necessary  to
+  specify the data for searching or  filling.  As  such  data  can  be
+  specified hexadecimal  byte  values,  the  sequences  of  characters
+  (strings) and instructions. Semicolon must  follows  each  assembler
+  instruction, bytes and strings must  be  separated  with  spaces  or
+  semicolons.  The  strings  are  enclosed  in  quotation   marks   or
+  apostrophes. If there is an apostrophe in string, that  line  it  is
+  necessary to enclose in quotation  marks,  but  if  quotation  marks
+  present in the string - in apostrophes. When meet both symbols it is
+  necessary to split the string on several. For example, the following
+  search/fill strings are valid:
+
+    90 nop; nop
+
+    1 2; 3 "abc" '"'
+
+    cmp ax,1; 90
+
+    If string contains  the  assembler  instructions,  using  relative
+  addressing (for example, call  near  or  jmp  near),  that  as  base
+  address is used current value of CS:IP.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  9.2. Data searching
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    Search window appears  after  pressing  Ctrl+S  or  choosing  item
+  Search bytes in local  menu  of  code  or  dump  window.  If  it  is
+  necessary to find the next copy of  the  same  data,  use  the  item
+  Search again (Ctrl+L) of local menu.
+
+    In the input line "Search for" it is  necessary  to  specify  data
+  (9.1), in the input line "Address" - an initial address of searching,
+  among flags "Options" - choose  necessary.  They  have  a  following
+  purpose:
+
+    Ignore case - ignore differences in case of characters;
+
+    Backward - unless it  is  set,  search  for  data  from  specified
+  address to the end  of  memory,  but  if  it  is  set  -  search  to
+  beginning of memory (searching in reverse direction);
+
+    Exclude HMA - if this flag is not set, then data are  searched  in
+  all memory, including HMA, above 1MB. If A20 is  not  enabled,  that
+  will occur transition to beginning of the memory. If  this  flag  is
+  set, then data are searched only within 1MB. This  flag  meaningless
+  when searching in reverse direction.
+
+    Result in code - if this flag is not set then dump window will  be
+  set to beginning of found data, if this flag is set - code window.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  9.3. Copying memory block
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    The debugger allows to copy  the  memory  areas,  fill  them  with
+  specified bytes, write them to file and read  them  from  file.  For
+  work with blocks (memory areas) is intended special local menu (Fig.
+  9.1), which can be called by  pressing  Ctrl+B  from  code  or  dump
+  window or from local menu of dump window.
+
+  ÚÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+  ³ Copy...     ³ÛÛ ÄÄÄÄ copy memory block
+  ³ Fill...     ³ÛÛ ÄÄÄÄ fill memory block
+  ³ Write...    ³ÛÛ ÄÄÄÄ write memory block to a file
+  ³ Read...     ³ÛÛ ÄÄÄÄ read memory block from a file
+  ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÙÛÛ
+    ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ
+
+                                Fig. 9.1
+
+    To copy memory block use the  Copy Block  dialog  window.  Specify
+  source address (From), destination address (To) and amount of  bytes
+  to copy (Count). Copying is produced by usual 16-bit instruction rep
+  movsb, with all resulting consequences: you  can't  copy  more  than
+  64KB of data, in  certain  cases  can  occur  cyclic  overflow  (for
+  example, when offset + counter > 10000h).
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  9.4. Filling memory block
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    Filling the area of memory is produced similarly to copying, using
+  dialog window Fill Block. Specify initial address (From), amount  of
+  repetitions (Count) and value (9.1) which must be written to  memory
+  (Fill with).  Can't be filled more than 64KB.  The bytes defined  by
+  line Fill with, are written Count times.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  9.5. Writing memory block to a file
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    It is possible to write memory block to a  file  on  disk.  Former
+  restrictions are superimposed on size of the block. Specify filename
+  (File name), the address of block (From) and size of block in  bytes
+  (Count). If the file with such name  already  exists,  you  will  be
+  asked to rewrite the existing file or to add the block to it.
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  9.6. Reading memory block from a file
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    Reading data from file to memory produced in  similar  way,  using
+  dialog window Read Block.
+
+
+
+ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+
+  10. APPENDIX 1: MENU SYSTEM
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  10.1. Main menu
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  File
+  ~~~~
+    Load
+        Load new program into non-resident debugger (F3, chapter 7.1)
+
+    New
+        Prepare debugger to debugging a new program (chapter 7.1)
+
+    About
+        Show information about debugger and it's authors
+
+    Resident
+        Exit from debugger leaving it in memory (chapter 3.2)
+
+    Exit
+        Exit from debugger if it is not a TSR (Alt+X)
+
+  Edit
+  ~~~~
+    Assembler
+        Switch to assembler mode (Shift+A, chapter 5.1.3)
+
+    Dump
+        Go to dump window (Shift+D, chapter 5.2)
+
+    Registers
+        Go to registers window (Shift+R, chapter 5.3)
+
+    Flags
+        Go to flags window (Shift+F, chapter 5.4)
+
+    Stack
+        Go to stack window (Shift+F, chapter 5.5)
+
+  Run
+  ~~~
+    Run
+        Run program (Ctrl+F9, chapter 7.2)
+
+    Go to cursor
+        Run program to current cursor position (F4, chapter 7.2)
+
+    Skip
+        Skip current instruction (F6, chapter 7.2)
+
+    Trace into
+        Execute single instruction (F7, chapter 7.2)
+
+    Step over
+        Execute single instruction, skip over calls (F8, chapter 7.2)
+
+    Animate
+        Not yet implemented
+
+    Arguments
+        Set command line arguments for debugged program (chapter 7.1)
+
+    Program reset
+        Terminate debugging and reload program (Ctrl+F2, chapter 7.1)
+
+  Breakpoints
+  ~~~~~~~~~~~
+    Set/Clear
+        Set / clear breakpoint (F2, chapter 7.3)
+
+    Activity
+        Enable / disable breakpoint (Alt+F2, chapter 7.3)
+
+    Edit
+        Not yet implemented
+
+    Delete all
+        Delete all breakpoints (chapter 7.3)
+
+    Enable all
+        Enable all breakpoints (chapter 7.3)
+
+    Disable all
+        Disable all breakpoints (chapter 7.3)
+
+  Options
+  ~~~~~~~
+    CPU for disassembler
+    ~~~~~~~~~~~~~~~~~~~~
+      8086/8088
+        8086/8088 mode (chapter 6.1)
+
+      80286
+        80286 mode (chapter 6.1)
+
+      80386
+        80386 mode (chapter 6.1)
+
+      80486
+        80486 mode (chapter 6.1)
+
+      Auto detect
+        Automatically detect disassembling mode (chapter 6.1)
+
+    Screen swapping
+    ~~~~~~~~~~~~~~~
+      None
+        Do not switch to program's screen while debugging (chapter 6.2)
+
+      Smart
+        Switch  to  program's  screen  only  on  certain  instructions
+        (chapter 6.2)
+
+      Always
+        Switch to program's screen on any instruction (chapter 6.2)
+
+    Configuration
+        Not yet implemented
+
+  Window
+  ~~~~~~
+    Refresh display
+        Redraw debugger's screen (F5, chapter 6.2)
+
+    User screen
+        Show screen of the program being debugged (Alt+F5, chapter 6.2)
+
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  10.2. Code window menu
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    Assembler
+        Switch to assembler mode (Shift+A, chapter 5.1.3)
+
+    New CS:IP
+        Set CS:IP to address  of  instruction  under  cursor  (Ctrl+N,
+        chapter 7.2)
+
+    16/32-bit regs
+        Switch between 16-bit and 32-bit mode (Ctrl+R, chapter 5.3)
+
+    Data watch
+        Turn on/off data watch mode (Ctrl+W, chapter 8.2)
+
+    Dump position
+    ~~~~~~~~~~~~~
+      Address
+        Set initial address of dump window (Ctrl+D, chapter 8.1)
+
+      Reference
+        Use address, on which current instruction refers,  as  initial
+        address of dump window (Alt+=, chapter 8.1)
+
+      User screen
+        Use address of buffer with content of the program's screen  as
+        initial address of dump window (Alt+U, chapter 8.1)
+
+      Dump DS:SI
+        Use value of DS:SI as initial address of dump  window  (Alt+D,
+        chapter 8.1)
+
+      Dump ES:DI
+        Use value of ES:DI as initial address of dump  window  (Alt+E,
+        chapter 8.1)
+
+      Dump SS:BP
+        Use value of SS:BP as initial address of dump  window  (Alt+S,
+        chapter 8.1)
+
+      Dump CS:IP
+        Use value of CS:IP as initial address of dump  window  (Alt+C,
+        chapter 8.1)
+
+      Dump ES:BX
+        Use value of ES:BX as initial address of dump  window  (Alt+B,
+        chapter 8.1)
+
+      Dump ES:SI
+        Use value of ES:SI as initial address of dump  window  (Alt+I,
+        chapter 8.1)
+
+      Dump DS:DX
+        Use value of DS:DX as initial address of dump  window  (Alt+F,
+        chapter 8.1)
+
+      Dump DS:DI
+        Use value of DS:DI as initial address of dump  window  (Alt+J,
+        chapter 8.1)
+
+      Dump DX:AX
+        Use value of DX:AX as initial address of dump  window  (Alt+A,
+        chapter 8.1)
+
+      Dump code
+        Use address of current instruction as initial address of  dump
+        window (Alt+L, chapter 8.1)
+
+    Code position
+    ~~~~~~~~~~~~~
+      Address
+        Set initial address of code window (Ctrl+G, chapter 8.1)
+
+      Origin
+        Use value of CS:IP as initial address of code  window  (Ctrl+O
+        or Ctrl+Enter, chapter 8.1)
+
+      Follow
+        Follow jump, call,  ret  or  int  instruction  to  destination
+        (Ctrl+F or Enter, chapter 8.1)
+
+      Previous
+        Return to previous displayed instruction (after Follow command)
+        (Ctrl+P or Backspace, chapter 8.1)
+
+    Restore CS:IP
+        Restore CS:IP (Ctrl+C, chapter 5.3)
+
+    Restore regs
+        Restore all registers except for CS:IP and flags (Ctrl+A,
+        chapter 5.3)
+
+    Restore flags
+        Restore flags register (Ctrl+T, chapters 5.3 and 5.4)
+
+    Search bytes
+        Search for data and/or instructions (Ctrl+S, chapter 9.2)
+
+    Search again
+        Find next sequence of bytes (Ctrl+L, chapter 9.2)
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  10.3. Dump window menu
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    Dump position
+    ~~~~~~~~~~~~~
+      Address
+        Set initial address of dump window (Ctrl+D, chapter 8.1)
+
+      Reference
+        Use address, on which current instruction refers,  as  initial
+        address of dump window (Alt+=, chapter 8.1)
+
+      User screen
+        Use address of buffer with content of the program's screen  as
+        initial address of dump window (Alt+U, chapter 8.1)
+
+      Dump DS:SI
+        Use value of DS:SI as initial address of dump  window  (Alt+D,
+        chapter 8.1)
+
+      Dump ES:DI
+        Use value of ES:DI as initial address of dump  window  (Alt+E,
+        chapter 8.1)
+
+      Dump SS:BP
+        Use value of SS:BP as initial address of dump  window  (Alt+S,
+        chapter 8.1)
+
+      Dump CS:IP
+        Use value of CS:IP as initial address of dump  window  (Alt+C,
+        chapter 8.1)
+
+      Dump ES:BX
+        Use value of ES:BX as initial address of dump  window  (Alt+B,
+        chapter 8.1)
+
+      Dump ES:SI
+        Use value of ES:SI as initial address of dump  window  (Alt+I,
+        chapter 8.1)
+
+      Dump DS:DX
+        Use value of DS:DX as initial address of dump  window  (Alt+F,
+        chapter 8.1)
+
+      Dump DS:DI
+        Use value of DS:DI as initial address of dump  window  (Alt+J,
+        chapter 8.1)
+
+      Dump DX:AX
+        Use value of DX:AX as initial address of dump  window  (Alt+A,
+        chapter 8.1)
+
+      Dump code
+        Use address of current instruction as initial address of  dump
+        window (Alt+L, chapter 8.1)
+
+    Dump follow
+    ~~~~~~~~~~~
+      Near data
+        Use word under  cursor  as  initial  address  of  dump  window
+        (chapter 8.1)
+
+      Far data
+        Use doubleword under cursor as initial address of dump  window
+        (chapter 8.1)
+
+      Data segment
+        Use word under cursor  as  initial  segment  address  of  dump
+        window (offset is 0) (chapter 8.1)
+
+      Near code
+        Use word under  cursor  as  initial  address  of  code  window
+        (chapter 8.1)
+
+      Far code
+        Use doubleword under cursor as initial address of code  window
+        (chapter 8.1)
+
+      Code segment
+        Use word under cursor  as  initial  segment  address  of  code
+        window (offset is 0) (chapter 8.1)
+
+    Block
+    ~~~~~
+      Copy
+        Copy a memory block to a new address (chapter 9.3)
+
+      Fill
+        Fill a memory block with pattern (chapter 9.4)
+
+      Write
+        Write from a memory block to a file (chapter 9.5)
+
+      Read
+        Read to a memory block from a file (chapter 9.6)
+
+    Search bytes
+        Search for data and/or instructions (Ctrl+S, chapter 9.2)
+
+    Search again
+        Find next sequence of bytes (Ctrl+L, chapter 9.2)
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  10.4. Registers window menu
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    Increment
+        Increment register (Ctrl+I, chapter 5.3)
+
+    Decrement
+        Decrement register (Ctrl+D, chapter 5.3)
+
+    Zero
+        Clear register (Ctrl+Z, chapter 5.3)
+
+    Restore
+        Restore register (Ctrl+O, chapter 5.3)
+
+    Restore all
+        Restore all registers except  for  CS:IP  and  flags  (Ctrl+A,
+        chapter 5.3)
+
+    Restore CS:IP
+        Restore CS:IP (Ctrl+C, chapter 5.3)
+
+    Restore flags
+        Restore flags register (Ctrl+T, chapters 5.3 and 5.4)
+
+    32-bit regs
+        Switch between 16-bit and 32-bit mode (Ctrl+R, chapter 5.3)
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  10.5. Flags window menu
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    Toggle
+        Toggle the state of the flag (Space, chapter 5.4)
+
+    Restore flags
+        Restore flags register (Ctrl+T, chapters 5.3 and 5.4)
+
+
+
+ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+
+  11. APPENDIX 2: KEYBOARD SHORTCUTS
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  11.1. Code window
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  number (n)
+        Go to mark n (chapter 8.3)
+
+  F1
+        Short help
+
+  F2
+        Set / clear breakpoint (Breakpoints|Set/Clear, chapter 7.3)
+
+  F3
+        Load  new  program  into  non-resident  debugger   (File|Load,
+        chapter 7.1)
+
+  F4
+        Run program to current  cursor  position  (Run|Go  to  cursor,
+        chapter 7.2)
+
+  F5
+        Redraw debugger's screen (Window|Refresh display, chapter 6.2)
+
+  F6
+        Skip current instruction (Run|Skip, chapter 7.2)
+
+  F7
+        Execute single instruction (Run|Trace into, chapter 7.2)
+
+  F8
+        Execute single instruction, skip over  calls  (Run|Step  over,
+        chapter 7.2)
+
+  Enter
+        Follow jump, call,  ret  or  int  instruction  to  destination
+        (Code position|Follow, Ctrl+F, chapter 8.1)
+
+  Backspace
+        Return to previous displayed instruction (after Follow command)
+        (Code position|Previous, Ctrl+P, chapter 8.1)
+
+  Shift+number (n)
+        Delete mark n (chapter 8.3)
+
+  Shift+A
+        Switch to assembler mode (Edit|Assembler, chapter 5.1.3)
+
+  Shift+D
+        Go to dump window (Edit|Dump, chapter 5.2)
+
+  Shift+F
+        Go to flags window (Edit|Flags, chapter 5.4)
+
+  Shift+R
+        Go to registers window (Edit|Registers, chapter 5.3)
+
+  Shift+S
+        Go to stack window (Edit|Stack, chapter 5.5)
+
+  Ctrl+Enter
+        Use value of CS:IP as initial address of code  window (Origin,
+        Ctrl+O, chapter 8.1)
+
+  Ctrl+A
+        Restore all registers except for CS:IP and flags (Restore regs,
+        chapter 5.3)
+
+  Ctrl+B
+        Block menu (chapter 9.3)
+
+  Ctrl+C
+        Restore CS:IP (Restore CS:IP, chapter 5.3)
+
+  Ctrl+D
+        Set initial address  of  dump  window  (Dump position|Address,
+        chapter 8.1)
+
+  Ctrl+F
+        Follow jump, call,  ret  or  int  instruction  to  destination
+        (Code position|Follow, Enter, chapter 8.1)
+
+  Ctrl+G
+        Set initial address  of  code  window  (Code position|Address,
+        chapter 8.1)
+
+  Ctrl+L
+        Find next sequence of bytes (Search again, chapter 9.2)
+
+  Ctrl+M
+        Display memory blocks (chapter 8.4)
+
+  Ctrl+N
+        Set CS:IP to address of instruction  under  cursor (New CS:IP,
+        chapter 7.2)
+
+  Ctrl+O
+        Use value of CS:IP as initial address of code  window (Origin,
+        Ctrl+Enter, chapter 8.1)
+
+  Ctrl+P
+        Return to previous displayed instruction (after Follow command)
+        (Code position|Previous, Backspace, chapter 8.1)
+
+  Ctrl+R
+        Switch between 16-bit and 32-bit mode (16/32-bit mode, chapter
+        5.3)
+
+  Ctrl+S
+        Search for data and/or instructions (Search bytes, chapter 9.2)
+
+  Ctrl+T
+        Restore flags register (Restore flags, chapters 5.3 and 5.4)
+
+  Ctrl+W
+        Turn on/off data watch mode (Data watch, chapter 8.2)
+
+  Ctrl+F2
+        Terminate debugging and  reload  program  (Run|Program  reset,
+        chapter 7.1)
+
+  Ctrl+F9
+        Run program (Run|Run, chapter 7.2)
+
+  Alt+number (n)
+        Set mark n in code window (chapter 8.3)
+
+  Alt+=
+        Use address, on which current instruction refers,  as  initial
+        address of dump window (Dump position|Reference, chapter 8.1)
+
+  Alt+A
+        Use value of DX:AX as initial address  of  dump  window  (Dump
+        position|Dump DX:AX, chapter 8.1)
+
+  Alt+B
+        Use value of ES:BX as initial address  of  dump  window  (Dump
+        position|Dump ES:BX, chapter 8.1)
+
+  Alt+C
+        Use value of CS:IP as initial address  of  dump  window  (Dump
+        position|Dump CS:IP, chapter 8.1)
+
+  Alt+D
+        Use value of DS:SI as initial address  of  dump  window  (Dump
+        position|Dump DS:SI, chapter 8.1)
+
+  Alt+E
+        Use value of ES:DI as initial address  of  dump  window  (Dump
+        position|Dump ES:DI, chapter 8.1)
+
+  Alt+F
+        Use value of DS:DX as initial address  of  dump  window  (Dump
+        position|Dump DS:DX, chapter 8.1)
+
+  Alt+I
+        Use value of ES:SI as initial address  of  dump  window  (Dump
+        position|Dump ES:SI, chapter 8.1)
+
+  Alt+J
+        Use value of DS:DI as initial address  of  dump  window  (Dump
+        position|Dump DS:DI, chapter 8.1)
+
+  Alt+L
+        Use address of current instruction as initial address of  dump
+        window (Dump position|Dump code, chapter 8.1)
+
+  Alt+S
+        Use value of SS:BP as initial address  of  dump  window  (Dump
+        position|Dump SS:BP, chapter 8.1)
+
+  Alt+U
+        Use address of buffer with content of the program's screen  as
+        initial address  of  dump  window  (Dump position|User screen,
+        chapter 8.1)
+
+  Alt+X
+        Exit if debugger is not a TSR
+
+  Alt+F2
+        Enable / disable breakpoint (Breakpoints|Activity, chapter 7.3)
+
+  Alt+F5
+        Show screen of the program being debugged (Window|User screen,
+        chapter 6.2)
+
+  Alt+Shift+number (n)
+        Set mark n in dump window (chapter 8.3)
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  11.2. Dump window
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Ctrl+B
+        Block menu (chapter 9.3)
+
+  Ctrl+D
+        Set initial address  of  dump  window  (Dump position|Address,
+        chapter 8.1)
+
+  Ctrl+F
+        Follow menu (chapter 8.1)
+
+  Ctrl+L
+        Find next sequence of bytes (Search again, chapter 9.2)
+
+  Ctrl+S
+        Search for data and/or instructions (Search bytes, chapter 9.2)
+
+  Alt+=
+        Use address, on which current instruction refers,  as  initial
+        address of dump window (Dump position|Reference, chapter 8.1)
+
+  Alt+A
+        Use value of DX:AX as initial address  of  dump  window  (Dump
+        position|Dump DX:AX, chapter 8.1)
+
+  Alt+B
+        Use value of ES:BX as initial address  of  dump  window  (Dump
+        position|Dump ES:BX, chapter 8.1)
+
+  Alt+C
+        Use value of CS:IP as initial address  of  dump  window  (Dump
+        position|Dump CS:IP, chapter 8.1)
+
+  Alt+D
+        Use value of DS:SI as initial address  of  dump  window  (Dump
+        position|Dump DS:SI, chapter 8.1)
+
+  Alt+E
+        Use value of ES:DI as initial address  of  dump  window  (Dump
+        position|Dump ES:DI, chapter 8.1)
+
+  Alt+F
+        Use value of DS:DX as initial address  of  dump  window  (Dump
+        position|Dump DS:DX, chapter 8.1)
+
+  Alt+I
+        Use value of ES:SI as initial address  of  dump  window  (Dump
+        position|Dump ES:SI, chapter 8.1)
+
+  Alt+J
+        Use value of DS:DI as initial address  of  dump  window  (Dump
+        position|Dump DS:DI, chapter 8.1)
+
+  Alt+L
+        Use address of current instruction as initial address of  dump
+        window (Dump position|Dump code, chapter 8.1)
+
+  Alt+S
+        Use value of SS:BP as initial address  of  dump  window  (Dump
+        position|Dump SS:BP, chapter 8.1)
+
+| Alt+U
+|       Use address of buffer with content of the program's screen  as
+|       initial address  of  dump  window  (Dump position|User screen,
+|       chapter 8.1)
+|
+  Alt+Z
+        Expand / shrink dump window
+
+| Alt+F5
+|       Show screen of the program being debugged (Window|User screen,
+|       chapter 6.2)
+|
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  11.3. Registers window
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  Ctrl+A
+        Restore all registers except for CS:IP and flags (Restore regs,
+        chapter 5.3)
+
+  Ctrl+C
+        Restore CS:IP (Restore CS:IP, chapter 5.3)
+
+  Ctrl+D
+        Decrement register (Decrement, chapter 5.3)
+
+  Ctrl+I
+        Increment register (Increment, chapter 5.3)
+
+  Ctrl+O
+        Restore register (Restore, chapter 5.3)
+
+  Ctrl+R
+        Switch between 16-bit and 32-bit mode (16/32-bit mode, chapter
+        5.3)
+
+  Ctrl+T
+        Restore flags register (Restore flags, chapters 5.3 and 5.4)
+
+  Ctrl+Z
+        Clear register (Zero, chapter 5.3)
+
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  11.4. Flags window
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+  0 and 1
+        Clear / set the flag (chapter 5.4)
+
+| Down and Up
+|       Clear / set the flag (chapter 5.4)
+|
+  Space
+        Toggle the state of the flag (Toggle, chapter 5.4)
+
+  Ctrl+T
+        Restore flags register (Restore flags, chapters 5.3 and 5.4)
+
+
+
+ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+
+  12. COMMENTS, SUGGESTIONS, BUG REPORTS
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
+    If you have an offers on thing that it  is  necessary  to  add  in
+  debugger, or that it is necessary remove from it, or you have  found
+  the exasperating error in program or in Description, that  we  shall
+  pleased hear your opinion (information about error). You  may  write
+  to the following address:
+
+    Oleg O. Chukaev
+
+       Internet:    oleg.chukaev@mail.ru
+|                   http://www.bttr-software.de/products/insight/
+
+  The addresses of the authors of the debugger:
+
+    Victor Gamayunov
+
+       Internet:    tolstolob@mospravda.ru
+
+    Sergey Pimenov
+
+       Internet:    insight@cepera.ru
+                    http://www.cepera.ru/code/insight
+
+       FIDO:        2:5020/1039.1245
+
+    If you want to report bug, then in detail describe the  situation,
+  in which it has occurred.
+
+
+
+ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+
+
